@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies.
-RUN npm install --only=production
+RUN npm install --only=production --legacy-peer-deps
 
 # Copy the compiled/dist files to the working directory inside the container
 # The path should be relative to the build context
