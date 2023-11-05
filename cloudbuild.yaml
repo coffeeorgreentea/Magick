@@ -24,9 +24,7 @@ steps:
       - '-t'
       - 'gcr.io/$PROJECT_ID/server:latest'
       - '-f'
-      - ./Dockerfile
-      - .
-    dir: apps/server
+      - ./apps/server/Dockerfile
   - name: gcr.io/cloud-builders/docker
     args:
       - push
