@@ -9,33 +9,33 @@ steps:
       - run
       - build
 
-  # Server
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/server:latest'
-      - '-f'
-      - './apps/server/Dockerfile'
-      - '.'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - push
-      - 'gcr.io/$PROJECT_ID/server:latest'
+  # # Server
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args:
+  #     - build
+  #     - '-t'
+  #     - 'gcr.io/$PROJECT_ID/server:latest'
+  #     - '-f'
+  #     - './apps/server/Dockerfile'
+  #     - '.'
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args:
+  #     - push
+  #     - 'gcr.io/$PROJECT_ID/server:latest'
 
-  # Manager
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
-      - '-f'
-      - './apps/cloud-agent-manager/Dockerfile'
-      - '.'
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - push
-      - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+  # # Manager
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args:
+  #     - build
+  #     - '-t'
+  #     - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+  #     - '-f'
+  #     - './apps/cloud-agent-manager/Dockerfile'
+  #     - '.'
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args:
+  #     - push
+  #     - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
 
   # Worker
   - name: 'gcr.io/cloud-builders/docker'
@@ -52,9 +52,10 @@ steps:
       - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
 
 images:
-  - 'gcr.io/$PROJECT_ID/server:latest'
+  # - 'gcr.io/$PROJECT_ID/server:latest'
+  # - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
   - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
-  - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+
 
 substitutions:
   _PROJECT_ID: 'magick-387817'
