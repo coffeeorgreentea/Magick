@@ -1,6 +1,6 @@
 steps:
   # Install dependencies
-  - name: 'node'
+  - name: 'node:18'
     entrypoint: 'npm'
     args: ['install']
 
