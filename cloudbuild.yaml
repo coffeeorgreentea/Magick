@@ -61,3 +61,7 @@ images:
   - 'gcr.io/$PROJECT_ID/server:latest'
   - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
   - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+
+substitutions:
+  _PROJECT_ID: 'magick-387817'
+  _SHORT_SHA: 'latest'
