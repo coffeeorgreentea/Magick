@@ -1,18 +1,18 @@
 steps:
   # Install dependencies
-  - name: 'gcr.io/cloud-builders/npm'
+  - name: 'node'
     args: ['install']
 
   # Build the server application
-  - name: 'gcr.io/cloud-builders/npm'
+  - name: 'node'
     args: ['run', 'build-server']
 
   # Build the cloud agent worker application
-  - name: 'gcr.io/cloud-builders/npm'
+  - name: 'node'
     args: ['run', 'build-cloud-agent-worker']
 
   # Build the cloud agent manager application
-  - name: 'gcr.io/cloud-builders/npm'
+  - name: 'node'
     args: ['run', 'build-cloud-agent-manager']
 
   # Optionally, build other projects here following the same pattern...
