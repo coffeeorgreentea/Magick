@@ -19,6 +19,7 @@ RUN npm install --only=production --legacy-peer-deps
 # Copy the compiled/dist files to the working directory inside the container
 # The path should be relative to the build context
 COPY dist/apps/server/ ./
+COPY dist/apps/cloud-agent-worker/ ./
 
 # If your app binds to a port, the EXPOSE instruction is used to have it mapped by the docker daemon
 EXPOSE 3030
