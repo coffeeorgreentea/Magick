@@ -4,8 +4,9 @@ FROM node:18
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json (if available)
+# Copy the package.json, package-lock.json (if available), and the necessary scripts for the postinstall
 COPY package*.json ./
+COPY scripts/ ./scripts/
 
 # Install production dependencies.
 RUN npm install --only=production --legacy-peer-deps
