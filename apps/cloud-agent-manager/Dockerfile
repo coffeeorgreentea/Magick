@@ -5,14 +5,14 @@ ENV SERVER_PLUGINS="github,rest,discord,twitter,loop,task,googleai,openai,search
 
 WORKDIR /app
 
-# Only necessary runtime dependencies
 RUN apk update \
     && apk add --no-cache
 
 COPY package*.json ./
 COPY scripts /app/scripts
-COPY ./dist/apps/server /app/dist/apps/server
+COPY ./dist/apps/cloud-agent-manager /app/dist/apps/cloud-agent-manager
 
-RUN npm ci  --legacy-peer-deps --ignore-scripts
+RUN npm ci --legacy-peer-deps --ignore-scripts
 
-CMD [ "node", "/app/dist/apps/server/main.js" ]
+CMD [ "node", "/app/dist/apps/cloud-agent-manager/main.js" ]
+

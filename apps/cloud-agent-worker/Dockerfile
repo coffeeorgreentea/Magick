@@ -11,8 +11,9 @@ RUN apk update \
 
 COPY package*.json ./
 COPY scripts /app/scripts
-COPY ./dist/apps/server /app/dist/apps/server
+COPY ./dist/apps/cloud-agent-worker /app/dist/apps/cloud-agent-worker
 
-RUN npm ci  --legacy-peer-deps --ignore-scripts
+RUN npm ci --legacy-peer-deps --ignore-scripts
 
-CMD [ "node", "/app/dist/apps/server/main.js" ]
+CMD [ "node", "/app/dist/apps/cloud-agent-worker/main.js" ]
+
