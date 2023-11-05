@@ -6,15 +6,15 @@ steps:
 
 
   # Build the server application
-  - name: 'node:18'
+  - name: 'node'
     args: ['npm', 'run', 'build-server']
     
   # Build the cloud agent worker application
-  - name: 'node:18'
+  - name: 'node'
       args: ['npm', 'run', 'build-cloud-agent-worker']
   
   # Build the cloud agent manager application
-  - name: 'node:18'
+  - name: 'node'
       args: ['npm', 'run', 'build-cloud-agent-manager']
 
 
