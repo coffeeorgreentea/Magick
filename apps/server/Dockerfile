@@ -6,9 +6,12 @@ WORKDIR /app
 
 # Copy the package.json, package-lock.json (if available), and the necessary scripts for the postinstall
 COPY package*.json ./
+
+# Ensure the source directories and files are present
+COPY apps/server/src ./apps/server/src
 COPY scripts/ ./scripts/
 
-# Install production dependencies.
+# Install production dependencies, which will also trigger the postinstall script.
 RUN npm install --only=production --legacy-peer-deps
 
 # Copy the compiled/dist files to the working directory inside the container
