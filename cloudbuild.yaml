@@ -20,13 +20,13 @@ steps:
       - build-cloud-agent-manager
   - name: gcr.io/cloud-builders/docker
     args:
-      - build
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/server:latest'
-      - '-f'
-      - ./apps/server/Dockerfile
-      - .
-    dir: apps/server
+    - build
+    - '-t'
+    - 'gcr.io/$PROJECT_ID/server:latest'
+    - '-f'
+    - ./Dockerfile
+    - .
+  dir: apps/server
   - name: gcr.io/cloud-builders/docker
     args:
       - push
