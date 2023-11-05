@@ -26,9 +26,13 @@ const path = require('path');
 const fs  = require('fs');
 
 const pluginsJsPathClient = path.join(__dirname, '..', 'apps', 'client', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
 const pluginsJsPathServer = path.join(__dirname, '..', 'apps', 'server', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
 const pluginsJsPathAgent = path.join(__dirname, '..', 'apps', 'agent', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
 const pluginsJsPathCloudAgentWorker = path.join(__dirname, '..', 'apps', 'cloud-agent-worker', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
 
 function copyExamplePluginsJson() {
 
