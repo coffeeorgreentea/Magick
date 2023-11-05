@@ -1,6 +1,7 @@
 steps:
   # Install dependencies
   - name: 'node'
+    entrypoint: 'npm'
     args: ['install']
 
   # Build the server application
