@@ -8,41 +8,32 @@ steps:
     args:
       - run
       - build
+
+  # Server
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
       - '-t'
-      - 'gcr.io/$PROJECT_ID/server:latest'
+      - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
       - '-f'
-      - './apps/server/Dockerfile'
+      - './apps/cloud-agent-worker/Dockerfile'
       - '.'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - push
-      - 'gcr.io/$PROJECT_ID/server:latest'
-  - name: gcr.io/cloud-builders/docker
-    args:
-      - build
-      - '-t'
       - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
-      - '-f'
-      - ./Dockerfile
-      - .
-    dir: apps/cloud-agent-worker-app
-  - name: gcr.io/cloud-builders/docker
-    args:
-      - push
-      - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
-  - name: gcr.io/cloud-builders/docker
+
+
+  # Server
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
       - '-t'
       - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
       - '-f'
-      - ./Dockerfile
-      - .
-    dir: apps/cloud-agent-manager-app
-  - name: gcr.io/cloud-builders/docker
+      - './apps/cloud-agent-manager/Dockerfile'
+      - '.'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       - push
       - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
