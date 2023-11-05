@@ -6,16 +6,17 @@ steps:
 
 
   # Build the server application
-  - name: 'node'
+  - name: 'node:18'
     args: ['npm', 'run', 'build-server']
-
+    
   # Build the cloud agent worker application
-  - name: 'node'
-    args: ['npm', 'run', 'build-cloud-agent-worker']
-
+  - name: 'node:18'
+      args: ['npm', 'run', 'build-cloud-agent-worker']
+  
   # Build the cloud agent manager application
-  - name: 'node'
-    args: ['npm', 'run', 'build-cloud-agent-manager']
+  - name: 'node:18'
+      args: ['npm', 'run', 'build-cloud-agent-manager']
+
 
   # Build and push the server Docker image
   - name: 'gcr.io/cloud-builders/docker'
