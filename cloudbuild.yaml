@@ -1,44 +1,62 @@
 steps:
-  # Install dependencies
   - name: 'node:18'
-    entrypoint: 'npm'
-    args: ['install']
-
-
-  # Build the server application
-  - name: 'node'
-    args: ['npm', 'run', 'build-server']
-    
-  # Build the cloud agent worker application
-  - name: 'node'
-      args: ['npm', 'run', 'build-cloud-agent-worker']
-  
-  # Build the cloud agent manager application
-  - name: 'node'
-      args: ['npm', 'run', 'build-cloud-agent-manager']
-
-
-  # Build and push the server Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/server:latest', '-f', './apps/server/Dockerfile', '.']
-    dir: 'apps/server'
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/server:latest']
-
-  # Build and push the cloud agent worker Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest', '-f', './apps/cloud-agent-worker-app/Dockerfile', '.']
-    dir: 'apps/cloud-agent-worker-app'
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest']
-
-  # Build and push the cloud agent manager Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest', '-f', './apps/cloud-agent-manager-app/Dockerfile', '.']
-    dir: 'apps/cloud-agent-manager-app'
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest']
-
+    entrypoint: npm
+    args:
+      - install
+  - name: node
+    args:
+      - npm
+      - run
+      - build-server
+  - name: node
+    args:
+      - npm
+      - run
+      - build-cloud-agent-worker
+  - name: node
+    args:
+      - npm
+      - run
+      - build-cloud-agent-manager
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/server:latest'
+      - '-f'
+      - ./apps/server/Dockerfile
+      - .
+    dir: apps/server
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/$PROJECT_ID/server:latest'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
+      - '-f'
+      - ./apps/cloud-agent-worker-app/Dockerfile
+      - .
+    dir: apps/cloud-agent-worker-app
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+      - '-f'
+      - ./apps/cloud-agent-manager-app/Dockerfile
+      - .
+    dir: apps/cloud-agent-manager-app
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
 images:
   - 'gcr.io/$PROJECT_ID/server:latest'
   - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
