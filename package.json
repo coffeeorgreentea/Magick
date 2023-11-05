@@ -29,6 +29,8 @@
     "build-agent": "npx nx build @magickml/agent",
     "build-docs": "npx nx build @magickml/docs",
     "build-engine": "npx nx build @magickml/core",
+    "build-cloud-agent-worker": "npx nx build @magickml/cloud-agent-worker-app",
+    "build-cloud-agent-manager": "npx nx build @magickml/cloud-agent-manager-app",
     "test": "npx nx test",
     "test:core": "npx nx test @magickml/core",
     "nukefromorbit": "rimraf ./packages/**/node_modules && rimraf ./node_modules && rimraf ./apps/**/node_modules",
