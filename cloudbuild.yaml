@@ -7,17 +7,7 @@ steps:
     entrypoint: npm
     args:
       - run
-      - build-server
-  # - name: 'node:18'
-  #   entrypoint: npm
-  #   args:
-  #     - run
-  #     - build-cloud-agent-worker
-  # - name: 'node:18'
-  #   entrypoint: npm
-  #   args:
-  #     - run
-  #     - build-cloud-agent-manager
+      - build
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
@@ -30,38 +20,40 @@ steps:
     args:
       - push
       - 'gcr.io/$PROJECT_ID/server:latest'
-  # - name: gcr.io/cloud-builders/docker
-  #   args:
-  #     - build
-  #     - '-t'
-  #     - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
-  #     - '-f'
-  #     - ./Dockerfile
-  #     - .
-  #   dir: apps/cloud-agent-worker-app
-  # - name: gcr.io/cloud-builders/docker
-  #   args:
-  #     - push
-  #     - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
-  # - name: gcr.io/cloud-builders/docker
-  #   args:
-  #     - build
-  #     - '-t'
-  #     - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
-  #     - '-f'
-  #     - ./Dockerfile
-  #     - .
-  #   dir: apps/cloud-agent-manager-app
-  # - name: gcr.io/cloud-builders/docker
-  #   args:
-  #     - push
-  #     - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
+      - '-f'
+      - ./Dockerfile
+      - .
+    dir: apps/cloud-agent-worker-app
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+      - '-f'
+      - ./Dockerfile
+      - .
+    dir: apps/cloud-agent-manager-app
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
 
 images:
   - 'gcr.io/$PROJECT_ID/server:latest'
-  # - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
-  # - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
+  - 'gcr.io/$PROJECT_ID/cloud-agent-worker:latest'
+  - 'gcr.io/$PROJECT_ID/cloud-agent-manager:latest'
 
 substitutions:
   _PROJECT_ID: 'magick-387817'
   _SHORT_SHA: 'latest'
+  _CLIENT_PLUGINS: github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,avatar,elevenlabs,database,anthropic,intent
+  _SERVER_PLUGINS: github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,elevenlabs,database,anthropic,intent
