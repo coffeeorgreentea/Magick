@@ -1,6 +1,3 @@
-
-const DOCKER_BUILD = process.env.DOCKER_BUILD === "true" ? true : false;
-
 try {
   const dotenv = require('dotenv-flow')
   dotenv.config('../');
@@ -28,22 +25,14 @@ const clientPlugins = process.env.CLIENT_PLUGINS ? process.env.CLIENT_PLUGINS.sp
 const path = require('path');
 const fs  = require('fs');
 
-// Define base paths depending on whether GCP is true or not.
-const basePathClient = isGCP ? ['..', 'client', 'src'] : ['..', 'apps', 'client', 'src'];
-const basePathServer = isGCP ? ['..', 'server', 'src'] : ['..', 'apps', 'server', 'src'];
-const basePathAgent = isGCP ? ['..', 'agent', 'src'] : ['..', 'apps', 'agent', 'src'];
-const basePathCloudAgentWorker = isGCP ? ['..', 'cloud-agent-worker', 'src'] : ['..', 'apps', 'cloud-agent-worker', 'src'];
-
-// Construct paths using the base paths defined above.
-const pluginsJsPathClient = path.join(__dirname, ...basePathClient, 'plugins.ts');
-const pluginsJsPathServer = path.join(__dirname, ...basePathServer, 'plugins.ts');
-const pluginsJsPathAgent = path.join(__dirname, ...basePathAgent, 'plugins.ts');
-const pluginsJsPathCloudAgentWorker = path.join(__dirname, ...basePathCloudAgentWorker, 'plugins.ts');
-
+const pluginsJsPathClient = path.join(__dirname, '..', 'apps', 'client', 'src/plugins.ts');
 console.log(pluginsJsPathClient);
-console.log(pluginsJsPathServer);
-console.log(pluginsJsPathAgent);
-console.log(pluginsJsPathCloudAgentWorker);
+const pluginsJsPathServer = path.join(__dirname, '..', 'apps', 'server', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
+const pluginsJsPathAgent = path.join(__dirname, '..', 'apps', 'agent', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
+const pluginsJsPathCloudAgentWorker = path.join(__dirname, '..', 'apps', 'cloud-agent-worker', 'src/plugins.ts');
+console.log(pluginsJsPathClient);
 
 function copyExamplePluginsJson() {
 
