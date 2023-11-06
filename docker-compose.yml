@@ -46,10 +46,10 @@ services:
       VITE_APP_POSTHOG_ENABLED: 'false'
       VITE_APP_POSTHOG_API_KEY: key
       POSTHOG_API_KEY: key
-      VITE_APP_PRODUCTION: 'false'
-      PRODUCTION: 'false'
-      VITE_APP_STANDALONE: 'true'
-      STANDALONE: 'true'
+      VITE_APP_PRODUCTION: 'true'
+      PRODUCTION: 'true'
+      VITE_APP_STANDALONE: 'false'
+      STANDALONE: 'false'
       REDISCLOUD_HOST: redis
       REDISCLOUD_URL: redis://redis:6379
       DEFAULT_OPENAI_KEY: keytouseforprod
@@ -86,10 +86,10 @@ services:
       VITE_APP_POSTHOG_ENABLED: 'false'
       VITE_APP_POSTHOG_API_KEY: key
       POSTHOG_API_KEY: key
-      VITE_APP_PRODUCTION: 'false'
-      PRODUCTION: 'false'
-      VITE_APP_STANDALONE: 'true'
-      STANDALONE: 'true'
+      VITE_APP_PRODUCTION: 'true'
+      PRODUCTION: 'true'
+      VITE_APP_STANDALONE: 'false'
+      STANDALONE: 'false'
       REDISCLOUD_HOST: redis
       REDISCLOUD_URL: redis://redis:6379
       DEFAULT_OPENAI_KEY: keytouseforprod
@@ -126,10 +126,50 @@ services:
       VITE_APP_POSTHOG_ENABLED: 'false'
       VITE_APP_POSTHOG_API_KEY: key
       POSTHOG_API_KEY: key
-      VITE_APP_PRODUCTION: 'false'
-      PRODUCTION: 'false'
-      VITE_APP_STANDALONE: 'true'
-      STANDALONE: 'true'
+      VITE_APP_PRODUCTION: 'true'
+      PRODUCTION: 'true'
+      VITE_APP_STANDALONE: 'false'
+      STANDALONE: 'false'
+      REDISCLOUD_HOST: redis
+      REDISCLOUD_URL: redis://redis:6379
+      DEFAULT_OPENAI_KEY: keytouseforprod
+      DEFAULT_GOOGLEAI_API_KEY: keytouseforprod
+      OPENMETER_ENABLED: 'false'
+      OPENMETER_TOKEN: token
+      OPENMETER_ENDPOINT: localhost:8888
+      UNSTRUCTURED_ENDPOINT: https://api.unstructured.io/general/v0/general
+      AWS_ACCESS_KEY: key
+      AWS_SECRET_KEY: secret
+      AWS_REGION: region
+      AWS_BUCKET_NAME: bucket_name
+      AWS_BUCKET_ENDPOINT: endpoint
+      CLOUD_AGENT_KEY: key
+      DOCKER_BUILD: 'true'
+  client:
+    image: magickml/client
+    restart: always
+    ports:
+      - '80:80'
+    environment:
+      REDIS_HOST: redis
+      DATABASE_URL: postgresql://magick:magick_default_pw@postgres:5432/magick
+      CLIENT_PLUGINS: github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,avatar,elevenlabs,database,anthropic,intent
+      SERVER_PLUGINS: github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,elevenlabs,database,anthropic,intent
+      NODE_OPTIONS: '--max-old-space-size=8192'
+      PAGINATE_DEFAULT: 100
+      PAGINATE_MAX: 1000
+      JWT_SECRET: secret
+      DUMMY_TOKEN: your_dummy_token
+      VITE_APP_FILE_SERVER_URL: http://localhost:65530
+      VITE_APP_SPEECH_SERVER_URL: http://localhost:65532
+      VITE_APP_TRUSTED_PARENT_URL: http://localhost:3000
+      VITE_APP_POSTHOG_ENABLED: 'false'
+      VITE_APP_POSTHOG_API_KEY: key
+      POSTHOG_API_KEY: key
+      VITE_APP_PRODUCTION: 'true'
+      PRODUCTION: 'true'
+      VITE_APP_STANDALONE: 'false'
+      STANDALONE: 'false'
       REDISCLOUD_HOST: redis
       REDISCLOUD_URL: redis://redis:6379
       DEFAULT_OPENAI_KEY: keytouseforprod

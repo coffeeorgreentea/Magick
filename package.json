@@ -38,6 +38,7 @@
     "sortPackage": "npx sort-package-json",
     "find unused deps": "nx generate @trumbitta/nx-plugin-unused-deps:check --no-interactive",
     "postinstall": "node scripts/config-plugins.js",
+    "docker:client": "docker build -f apps/client/Dockerfile . -t magickml/client",
     "docker:server": "docker build -f apps/server/Dockerfile . -t magickml/server",
     "docker:cloud-agent-manager": "docker build -f apps/cloud-agent-manager/Dockerfile . -t magickml/cloud-agent-manager",
     "docker:cloud-agent-worker": "docker build -f apps/cloud-agent-worker/Dockerfile . -t magickml/cloud-agent-worker"
