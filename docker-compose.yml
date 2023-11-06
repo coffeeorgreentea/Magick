@@ -65,6 +65,9 @@ services:
       AWS_BUCKET_ENDPOINT: endpoint
       CLOUD_AGENT_KEY: key
       DOCKER_BUILD: 'true'
+    depends_on:
+    - postgres
+    - redis
   cloud-agent-manager:
     image: magickml/cloud-agent-manager
     restart: always
@@ -105,6 +108,9 @@ services:
       AWS_BUCKET_ENDPOINT: endpoint
       CLOUD_AGENT_KEY: key
       DOCKER_BUILD: 'true'
+    depends_on:
+    - postgres
+    - redis
   cloud-agent-worker:
     image: magickml/cloud-agent-worker
     restart: always
@@ -145,6 +151,9 @@ services:
       AWS_BUCKET_ENDPOINT: endpoint
       CLOUD_AGENT_KEY: key
       DOCKER_BUILD: 'true'
+    depends_on:
+      - postgres
+      - redis
   client:
     image: magickml/client
     restart: always
