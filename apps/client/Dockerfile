@@ -16,6 +16,7 @@ RUN apk update \
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps --ignore-scripts
 
+
 # Assuming your local 'dist' folder is in the correct structure for your client app
 COPY dist/apps/client ./client
 
