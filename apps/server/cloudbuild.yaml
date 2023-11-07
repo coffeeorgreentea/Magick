@@ -12,7 +12,7 @@ steps:
     args:
       - build
       - '-t'
-      - 'gcr.io/${_PROJECT_ID}/client:${_SHORT_SHA}'
+      - 'gcr.io/${_PROJECT_ID}/server:${_SHORT_SHA}'
       - '-f'
       - 'Dockerfile'
       - '--build-arg'
@@ -24,7 +24,7 @@ steps:
       - 'CLIENT_PLUGINS=$_CLIENT_PLUGINS'
       - 'SERVER_PLUGINS=$_SERVER_PLUGINS'
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/${_PROJECT_ID}/client:${_SHORT_SHA}']
+    args: ['push', 'gcr.io/${_PROJECT_ID}/server:${_SHORT_SHA}']
 
 images:
   - 'gcr.io/${_PROJECT_ID}/server:${_SHORT_SHA}'
