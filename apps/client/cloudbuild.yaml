@@ -1,34 +1,33 @@
 steps:
   - name: 'node:18'
     entrypoint: npm
-    args:
-      - install
+    args: ['install']
   - name: 'node:18'
     entrypoint: npm
-    args:
-      - run
-      - build-client
+    args: ['run', 'build-client']
 
   # Client
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
       - '-t'
-      - 'gcr.io/$PROJECT_ID/client:latest'
-      - '-f'
-      - './apps/client/Dockerfile'
+      - 'gcr.io/$PROJECT_ID/client:$SHORT_SHA'
+      - '--build-arg'
+      - 'CLIENT_PLUGINS=$_CLIENT_PLUGINS'
+      - '--build-arg'
+      - 'SERVER_PLUGINS=$_SERVER_PLUGINS'
       - '.'
+    env:
+      - 'CLIENT_PLUGINS=$_CLIENT_PLUGINS'
+      - 'SERVER_PLUGINS=$_SERVER_PLUGINS'
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - push
-      - 'gcr.io/$PROJECT_ID/client:latest'
+    args: ['push', 'gcr.io/$PROJECT_ID/client:$SHORT_SHA']
 
 images:
-  - 'gcr.io/$PROJECT_ID/client:latest'
-
+  - 'gcr.io/$PROJECT_ID/client:$SHORT_SHA'
 
 substitutions:
-  _PROJECT_ID: 'magick-387817'
-  _SHORT_SHA: 'latest'
-  _CLIENT_PLUGINS: github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,avatar,elevenlabs,database,anthropic,intent
-  _SERVER_PLUGINS: github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,elevenlabs,database,anthropic,intent
+  _PROJECT_ID: magick-387817
+  _SHORT_SHA: dev
+  _CLIENT_PLUGINS: 'github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,avatar,elevenlabs,database,anthropic,intent'
+  _SERVER_PLUGINS: 'github,rest,discord,twitter,loop,task,googleai,openai,search,bluesky,elevenlabs,database,anthropic,intent'
