@@ -16,8 +16,7 @@ RUN apk update \
 COPY package*.json ./
 RUN npm ci --legacy-peer-deps --ignore-scripts
 
-
-# Assuming your local 'dist' folder is in the correct structure for your client app
+# Copy your local 'dist' folder content to the image
 COPY dist/apps/client ./client
 
 # Nginx stage for serving static assets
@@ -26,6 +25,11 @@ FROM nginx:stable-alpine as production-stage
 # Copy built assets from the build stage
 COPY --from=build-stage /app/client /usr/share/nginx/html
 
-EXPOSE 80
+# Remove the default nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Use the default CMD of nginx image, which starts Nginx
+# Replace with a custom nginx configuration
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# EXPOSE is not actually required by Cloud Run but is a good documentation practice
+EXPOSE 8080
