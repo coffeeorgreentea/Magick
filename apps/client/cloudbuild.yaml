@@ -7,7 +7,7 @@ steps:
     entrypoint: npm
     args:
       - run
-      - build
+      - build-client
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
