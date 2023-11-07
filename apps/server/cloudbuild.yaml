@@ -14,7 +14,7 @@ steps:
       - '-t'
       - 'gcr.io/${_PROJECT_ID}/server:${_SHORT_SHA}'
       - '-f'
-      - 'Dockerfile'
+      - 'apps/server/Dockerfile'
       - '--build-arg'
       - 'CLIENT_PLUGINS=$_CLIENT_PLUGINS'
       - '--build-arg'
