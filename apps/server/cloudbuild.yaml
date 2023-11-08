@@ -9,7 +9,6 @@ steps:
     args:
       - run
       - build
-
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - build
@@ -22,9 +21,6 @@ steps:
       - '-f'
       - './apps/client/Dockerfile'
       - '.'
-    env:
-      - 'CLIENT_PLUGINS=${_CLIENT_PLUGINS}'
-      - 'SERVER_PLUGINS=${_SERVER_PLUGINS}'
     secretEnv: [
       'DATABASE_URL',
       'CLIENT_PLUGINS',
