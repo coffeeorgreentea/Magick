@@ -24,7 +24,7 @@ steps:
       - '-t'
       - 'gcr.io/${_PROJECT_ID}/server:${_SHORT_SHA}'
       - '-f'
-      - './apps/client/Dockerfile'
+      - 'Dockerfile'
       - '.'
     secretEnv: [
       'DATABASE_URL',
