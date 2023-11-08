@@ -3,13 +3,25 @@ steps:
     entrypoint: npm
     args:
       - install
+
   - name: 'node:18'
     entrypoint: npm
     args:
       - run
       - build
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image:$SHORT_SHA', '.']
+    args:
+      - build
+      - '--build-arg'
+      - 'CLIENT_PLUGINS=${_CLIENT_PLUGINS}'
+      - '--build-arg'
+      - 'SERVER_PLUGINS=${_SERVER_PLUGINS}'
+      - '-t'
+      - 'gcr.io/${_PROJECT_ID}/server:${_SHORT_SHA}'
+      - '-f'
+      - './apps/client/Dockerfile'
+      - '.'
     env:
       - 'CLIENT_PLUGINS=${_CLIENT_PLUGINS}'
       - 'SERVER_PLUGINS=${_SERVER_PLUGINS}'
