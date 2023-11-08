@@ -1,3 +1,4 @@
+serviceAccount: projects/magick-387817/serviceAccounts/magick-dev-service@magick-387817.iam.gserviceaccount.com
 steps:
   - name: 'node:18'
     entrypoint: npm
